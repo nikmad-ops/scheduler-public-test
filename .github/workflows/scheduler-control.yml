@@ -1,0 +1,21 @@
+name: Scheduler Control Test
+
+on:
+  push:
+    branches:
+      - main
+
+  schedule:
+    - cron: '2,12,22,32,42,52 * * * *'
+
+jobs:
+  heartbeat:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Heartbeat
+        run: |
+          echo "Triggered by: ${{ github.event_name }}"
+          echo "Repository: ${{ github.repository }}"
+          echo "UTC:"
+          date -u
